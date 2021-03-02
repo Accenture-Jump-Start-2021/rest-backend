@@ -1,0 +1,38 @@
+{
+  "name": "rest-backend",
+  "version": "1.0.0",
+  "description": "REST backend repo",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch:dev": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Accenture-Jump-Start-2021/rest-backend.git"
+  },
+  "nodemonConfig": {
+    "exec": "npm run start",
+    "watch": [
+      "routes/*",
+      "index.js"
+    ],
+    "ignore": [
+      "**/__tests__/**",
+      "*.test.js",
+      "*.spec.js"
+    ]
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Accenture-Jump-Start-2021/rest-backend/issues"
+  },
+  "homepage": "https://github.com/Accenture-Jump-Start-2021/rest-backend#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "lokijs": "^1.5.11",
+    "nodemon": "^2.0.7"
+  }
+}
