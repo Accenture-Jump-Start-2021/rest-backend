@@ -1,11 +1,13 @@
 const express = require('express');
 const pokemonRoute = require('./routes/pokemon');
+const trainersRoute = require('./routes/trainers');
 
 const PORT = '3000';
 const app = express();
 
 app.use(express.json());
 app.use('/pokemon', pokemonRoute);
+app.use('/trainers', trainersRoute);
 
 
 app.all('/', (req, res, next) => {

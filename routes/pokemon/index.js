@@ -1,9 +1,14 @@
 const express = require('express');
-const router = express.Router();
 const loki = require('lokijs');
+const axios = require('axios');
 
 const app = express();
+const router = express.Router();
+const pokedexRemoteUrl = 'https://pokeapi.co/api/v2/pokemon/';
+
+
 var db = new loki('sandbox.db');
+
 
 // Add a collection to the database
 var pokemon = db.addCollection('pokemon');
@@ -22,13 +27,14 @@ router.get('/', (req, res) => {
 
 router.get('/:pokeid', (req, res) => {
     var pokeid = req.params.pokeid;
-    var poke = pokemon.findOne({'pokeid': pokeid});
-
-    if (poke) {
-        res.send(poke);
-    } else {
-        res.status(404).send(`Pokemon with Poke-ID ${pokeid} not found!`);
-    }
+    axios.get(`${pokedexRemoteUrl}${pokeid}`).then( response => {
+        if (response) {
+            res.send(response.data);
+        }
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send(error);
+    })
 });
 
 router.put('/:pokeid', (req, res) => {
