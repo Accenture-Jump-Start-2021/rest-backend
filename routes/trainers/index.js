@@ -40,7 +40,7 @@ router.get('/:id/pokemon', async(req, res) => {
     
     if (trainer) {
         Promise.all(trainer.pokemon.map(pokeid => {
-            axios.get(`${pokedexRemoteUrl}${pokeid}`).then(poke => {
+            return axios.get(`${pokedexRemoteUrl}${pokeid}`).then(poke => {
                 console.log('poke: ', poke.data.name);
                 return poke.data.name;
             });
