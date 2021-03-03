@@ -5,12 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "watch:dev": "nodemon"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Accenture-Jump-Start-2021/rest-backend.git"
   },
   "nodemonConfig": {
     "exec": "npm run start",
@@ -23,6 +18,10 @@
       "*.test.js",
       "*.spec.js"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Accenture-Jump-Start-2021/rest-backend.git"
   },
   "author": "",
   "license": "ISC",
