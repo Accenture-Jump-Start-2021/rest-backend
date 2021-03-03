@@ -1,29 +1,23 @@
 # rest-backend
 REST backend repo
 
+## Local Build:
 
+1. Git Bash oder VS Code Terminal (empfohlen) unter z.B. C://repos/jumpstart-repo-collection/ aufmachen
 
----
+2. `git clone https://github.com/Accenture-Jump-Start-2021/rest-backend/`
 
-Was wir gelernt haben:
-- Wie man Endpunkte definieren kann
-- Wie man Routes gruppieren kan (/pokemon, /trainers)
-- Wie man 3rd party APIs integrieren kann
-- Wie man DB einbinden kann (mit Beispiel in-memory)
+3. `cd rest-backend`
 
-Nächste Aufgaben:
-- Geht in eigenen Team Call
-- Baut eure eigene API nach Anforderung
-- Siehe unten "How to create nodejs with express"
-- 
+4. `npm i`
 
-
+5. `npm run watch:dev`
 
 ---
 
-## How to create nodejs with express:
-
-- Projekt-Ordner erstellen z.B. `mkdir pokedex-backend`
+## How to create nodejs backend with express:
+- Git Bash oder VS Code Terminal (empfohlen) unter z.B. C://repos/jumpstart-repo-collection/ aufmachen
+- Ein neues Projekt-Ordner erstellen z.B. `mkdir pokedex-backend`
 - Geh ins Ordner rein z.B. `cd pokedex-backend`
 - `npm init` -> Eingabetaste mehrmals drucken bis fertig ist
 - `npm i -g express`
@@ -50,6 +44,67 @@ Nächste Aufgaben:
 - Um server zu starten: `npm run watch:dev`
 - Um server manuell zu stoppen: Strg+C
 
+
+### How to deploy to AWS (This is general how-to. Starting here, you can also do it inside your own Backend-Repo):
+
+1. `npm install -g serverless`
+
+2. `npm i serverless-http`
+
+3. `sls create -t aws-nodejs -n rest-backend`
+
+4. Edit the root index.js:
+    
+    1. Add this to second line:
+    `const sls = require('serverless-http')`
+
+    2. Completely remove app.listen(...); and replace it with this line:
+    `module.exports.server = sls(app)`
+
+5. Completely delete the content of serverless.yml and replace it with this (see {{...}} for parts that you need to change manually):
+
+```
+# serverless.yml 
+service: {{CHANGE IT TO YOUR OWN (OR YOUR TEAM) BACKEND NAME}}
+provider: 
+  name: aws 
+  runtime: nodejs12.x 
+  stage: dev 
+  region: eu-central-1 
+functions: 
+    app: 
+        handler: index.server # reference the file and exported method
+        events: # events trigger lambda functions 
+        - http: # this is an API Gateway HTTP event trigger 
+            path: / 
+            method: ANY 
+            cors: true 
+        - http: # all routes get proxied to the Express router 
+            path: /{proxy+} 
+            method: ANY 
+            cors: true
+
+```
+
+6. Run `sls deploy`
+
+Diese Anleitung wird von https://medium.com/hackernoon/how-to-deploy-a-node-js-application-to-aws-lambda-using-serverless-ae7e7ebe0996 besorgt, mit einige Anpassungen.
+
+---
+---
+---
+
+Was wir gelernt haben:
+- Wie man Endpunkte definieren kann
+- Wie man Routes gruppieren kan (/pokemon, /trainers)
+- Wie man 3rd party APIs integrieren kann
+- Wie man DB einbinden kann (mit Beispiel in-memory)
+
+Nächste Aufgaben:
+- Geht in eigenen Team Call
+- Baut eure eigene API nach Anforderung
+- Siehe unten "How to create nodejs with express"
+
 ---
 
 ## API Anforderung:
@@ -64,20 +119,13 @@ Nächste Aufgaben:
 3. GET '/pokemon/:id', liefert entsprechend das Pokemon zurück, ansonsten 404 mit "Pokemon with id xx not found"
 4. GET '/pokedex/:id', liefert das Pokemonname von https://pokeapi.co/api/v2/pokemon/ zurück (Einbindung 3rd party API)
 
+### Hardcore
+1. POST /trainers mit {"name": "Satoshi", "trainerId": "1", "starterPokemon": ""}
+2. 
 
 lokijs Doku: https://techfort.github.io/LokiJS/
 
 
 ---
 
-How to deploy to AWS:
-`npm install -g serverless`
-
-`sls create -t aws-nodejs -n rest-backend`
-
-`npm i serverless-http`
-
-Add these lines to index.js
-`const sls = require('serverless-http')`
-`module.exports.server = sls(app)`
 
