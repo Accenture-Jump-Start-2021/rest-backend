@@ -59,7 +59,9 @@ REST backend repo
 
 2. `npm i serverless-http`
 
-3. `sls create -t aws-nodejs -n rest-backend` (sls ist Abkürzung für serverless)
+3. `sls create -t aws-nodejs -n rest-backend` (sls ist Abkürzung für serverless). Dieses Befehl erzeugt einige neue Dateien.
+
+4. Die Datei handler.js löschen
 
 4. Edit the root index.js:
     
