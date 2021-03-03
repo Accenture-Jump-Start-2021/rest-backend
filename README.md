@@ -45,13 +45,21 @@ REST backend repo
 - Um server manuell zu stoppen: Strg+C
 
 
-### How to deploy to AWS (This is general how-to. Starting here, you can also do it inside your own Backend-Repo):
+### How to deploy to AWS Lambda (This is general how-to. Starting here, you can also do it inside your own Backend-Repo):
 
-1. `npm install -g serverless`
+0. Geh mal zu AWS -> IAM -> Roles:
+- Klick auf euer Name
+- Geh zum Tab "Security Credentials"
+- Unter Access Keys, klick auf "Create Access Key".
+- Kopier mal sowohl "Access Key ID" und "Secret Access Key" z.B. in Notepad rein
+
+
+1. `npm i -g serverless`, und danach:
+- Im VS Code Terminal, führe `sls config credentials --provider aws --key {{DEIN Access Key ID}} --secret {{DEIN Secret Access Key}}` aus, ohne die Klammer {{...}} 
 
 2. `npm i serverless-http`
 
-3. `sls create -t aws-nodejs -n rest-backend`
+3. `sls create -t aws-nodejs -n rest-backend` (sls ist Abkürzung für serverless)
 
 4. Edit the root index.js:
     
