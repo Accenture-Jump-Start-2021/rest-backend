@@ -47,6 +47,8 @@ Nächste Aufgaben:
     ]
 },
 ```
+- Um server zu starten: `npm run watch:dev`
+- Um server manuell zu stoppen: Strg+C
 
 ---
 
