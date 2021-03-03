@@ -51,4 +51,16 @@ router.get('/:id/pokemon', async(req, res) => {
     }
 })
 
+router.get('/:id/starter-pokemon', async(req, res) => {
+    var trainerid = req.params.id;
+    var trainer = trainers.findOne({'id': trainerid});
+
+    if (trainer) {
+        axios.get(`${pokedexRemoteUrl}${trainer.starter}`).then(poke => {
+            console.log('starter pokemon: ', poke.data.name);
+            res.send(poke.data.name)
+        });
+    }
+})
+
 module.exports = router;
