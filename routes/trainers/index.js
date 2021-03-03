@@ -32,15 +32,22 @@ router.get('/:id', async(req, res) => {
     }
 });
 
-router.get('/:id/starter-pokemon', async(req, res) => {
-    var trainerid = req.params.id;
-    var trainer = trainers.findOne({'id': trainerid});
+router.get('/:id/pokemon', async(req, res) => {
+    var id = req.params.id;
+    var trainer = trainers.findOne({'id': id});
 
+    console.log(trainer);
+    
     if (trainer) {
-        axios.get(`${pokedexRemoteUrl}${trainer.starter}`).then(poke => {
-            console.log('starter pokemon: ', poke.data.name);
-            res.send(poke.data.name)
-        });
+        Promise.all(trainer.pokemon.map(pokeid => {
+            axios.get(`${pokedexRemoteUrl}${pokeid}`).then(poke => {
+                console.log('poke: ', poke.data.name);
+                return poke.data.name;
+            });
+        })).then(response => {
+            console.log(response);
+            res.send(response);
+        })
     }
 })
 
