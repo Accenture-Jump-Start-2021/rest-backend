@@ -86,7 +86,8 @@ functions:
 
 ```
 
-6. Run `sls deploy`
+6. Run `sls deploy`. Wenn es erfolgreich durch ist, dann solltet ihr die URL, mit der ihr euer Backend ansprechen könnt, irgendwo im Terminal sehen, sollte irgendwo fast am Ende der Meldungen vom Befehl stehen.
+
 
 Diese Anleitung wird von https://medium.com/hackernoon/how-to-deploy-a-node-js-application-to-aws-lambda-using-serverless-ae7e7ebe0996 besorgt, mit einige Anpassungen.
 
