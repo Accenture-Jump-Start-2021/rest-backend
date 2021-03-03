@@ -101,6 +101,12 @@ functions:
 
 Diese Anleitung wird von https://medium.com/hackernoon/how-to-deploy-a-node-js-application-to-aws-lambda-using-serverless-ae7e7ebe0996 besorgt, mit einige Anpassungen.
 
+## Database with Postgres (optional. You can also use keep using lokijs if it's good enough)
+
+1. How to connect nodejs with postgres: https://medium.com/dailyjs/how-to-build-a-node-js-api-using-postgres-lambda-and-api-gateway-3211a4570cea
+2. Connecting to PostgreSQL in RDS: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.PostgreSQL.html
+
+
 ---
 ---
 ---
