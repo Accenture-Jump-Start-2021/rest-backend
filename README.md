@@ -26,6 +26,7 @@ Nächste Aufgaben:
 - Projekt-Ordner erstellen z.B. `mkdir pokedex-backend`
 - Geh ins Ordner rein z.B. `cd pokedex-backend`
 - `npm init` -> Eingabetaste mehrmals drucken bis fertig ist
+- `npm i -g express`
 - `npm i express axios lokijs nodemon`
 - In package.json, ersetze "scripts" durch:
 ```
