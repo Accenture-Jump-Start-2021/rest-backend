@@ -23,4 +23,7 @@ app.get('/pokedex/:id', async (req, res) => {
 
 });
 
-app.listen(PORT, () => console.log(`Node listening on port ${PORT}`));
+
+module.exports.handler = () => {
+    app.listen(PORT, () => console.log(`Node listening on port ${PORT}`));
+}
